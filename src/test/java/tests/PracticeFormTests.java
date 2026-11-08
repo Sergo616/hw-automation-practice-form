@@ -2,10 +2,9 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Condition.text;
 
 public class PracticeFormTests extends TestBase{
 
@@ -82,5 +81,29 @@ public class PracticeFormTests extends TestBase{
         $("#submit").scrollIntoView(true).click();
 
         $(".modal-dialog").shouldNot(appear);
+    }
+
+    @Test
+    void successfulSimpleFormTest() {
+        open("/text-box");
+        $("#userName").setValue("Bob Green");
+        $("#userEmail").setValue("bob@green.com");
+        $("#currentAddress").setValue("address 1");
+        $("#permanentAddress").setValue("address 2");
+        $("#submit").click();
+
+        $("#output #name").shouldHave(text("Bob Green"));
+        $("#output #email").shouldHave(text("bob@green.com"));
+        $("#output #currentAddress").shouldHave(text("address 1"));
+        $("#output #permanentAddress").shouldHave(text("address 2"));
+    }
+
+    @Test
+    void wrongEmailSimpleFormTest() {
+        open("/text-box");
+        $("#userEmail").setValue("wrong_email_format");
+        $("#submit").click();
+
+        $("#output #email").shouldNot(exist);
     }
 }

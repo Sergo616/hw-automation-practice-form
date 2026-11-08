@@ -10,10 +10,9 @@ dependencies {
     testImplementation(
             "com.codeborne:selenide:7.18.2",
             "org.junit.jupiter:junit-jupiter:5.11.3")
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    testRuntimeOnly(
+            "org.junit.platform:junit-platform-launcher",
+            "org.slf4j:slf4j-simple:1.7.29")
 }
 
 test {
