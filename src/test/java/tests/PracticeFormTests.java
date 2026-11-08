@@ -35,7 +35,52 @@ public class PracticeFormTests extends TestBase{
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(text("Bob Smith"), text("bob-smith@help.cop"), text("Male"), text("5551234567"), text("09 January,1999"), text("History"), text("Sports, Reading"), text("test-pic.png"), text("Main Street 1"), text("Uttar Pradesh Merrut"));
+    }
 
+    @Test
+    void successfulMinimumFillFormTest() {
+        open("/automation-practice-form");
+        $("#firstName").setValue("Bob");
+        $("#lastName").setValue("Smith");
+        $("#genterWrapper").$(byText("Male")).click();
+        $("#userNumber").setValue("5551234567");
+        $("#submit").scrollIntoView(true).click();
 
+        $(".modal-dialog").should(appear);
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("Bob Smith"), text("Male"), text("5551234567"));
+    }
+
+    @Test
+    void emptyFormTest() {
+        open("/automation-practice-form");
+        $("#submit").scrollIntoView(true).click();
+
+        $(".modal-dialog").shouldNot(appear);
+    }
+
+    @Test
+    void wrongPhoneFormTest() {
+        open("/automation-practice-form");
+        $("#firstName").setValue("Bob");
+        $("#lastName").setValue("Smith");
+        $("#genterWrapper").$(byText("Male")).click();
+        $("#userNumber").setValue("555");
+        $("#submit").scrollIntoView(true).click();
+
+        $(".modal-dialog").shouldNot(appear);
+    }
+
+    @Test
+    void wrongEmailFormTest() {
+        open("/automation-practice-form");
+        $("#firstName").setValue("Bob");
+        $("#lastName").setValue("Smith");
+        $("#userEmail").setValue("wrong_email_format");
+        $("#genterWrapper").$(byText("Male")).click();
+        $("#userNumber").setValue("5551234567");
+        $("#submit").scrollIntoView(true).click();
+
+        $(".modal-dialog").shouldNot(appear);
     }
 }
