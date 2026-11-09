@@ -33,7 +33,16 @@ public class PracticeFormTests extends TestBase{
 
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Bob Smith"), text("bob-smith@help.cop"), text("Male"), text("5551234567"), text("09 January,1999"), text("History"), text("Sports, Reading"), text("test-pic.png"), text("Main Street 1"), text("Uttar Pradesh Merrut"));
+        $(".table-responsive").shouldHave(text("Bob Smith"));
+        $(".table-responsive").shouldHave(text("bob-smith@help.cop"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("5551234567"));
+        $(".table-responsive").shouldHave(text("09 January,1999"));
+        $(".table-responsive").shouldHave(text("History"));
+        $(".table-responsive").shouldHave(text("Sports, Reading"));
+        $(".table-responsive").shouldHave(text("test-pic.png"));
+        $(".table-responsive").shouldHave(text("Main Street 1"));
+        $(".table-responsive").shouldHave(text("Uttar Pradesh Merrut"));
     }
 
     @Test
