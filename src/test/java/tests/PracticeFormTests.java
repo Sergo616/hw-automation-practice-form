@@ -56,7 +56,9 @@ public class PracticeFormTests extends TestBase{
 
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Bob Smith"), text("Male"), text("5551234567"));
+        $(".table-responsive").shouldHave(text("Bob Smith"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("5551234567"));
     }
 
     @Test
